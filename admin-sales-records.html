@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8" />
     <title>Med'z Laundry Shop</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="assets/style.css">
 </head>
-
 <body>
     <header>
         <nav class="nav">
@@ -18,7 +16,6 @@
                         <a href="index.html">MED'Z LAUNDRY SHOP</a>
                     </div>
                 </div>
-
                 <div class="nav-links">
                     <a href="admin-inquiry-records.html">Inquiries</a>
                     <a href="admin-booking-records.html">Booking</a>
@@ -26,11 +23,10 @@
                 </div>
             </div>
             <div class="nav-cta">
-                <a href="#" class="btn btn-accent" onclick="logout()">Logout</a>
+                <a href="#" class="btn btn-accent" id="btn-header-logout">Logout</a>
             </div>
         </nav>
     </header>
-
     <main class="page">
         <section id="about">
             <h2 class="section-title">List of Sales</h2>
@@ -56,14 +52,33 @@
             </div>
         </section>
     </main>
-
     <footer>
         &copy; <span>Med'z Laundry Shop</span>
     </footer>
-    <script src="assets/app.js"></script>
-    <script>
-        checkLogin(true)
+
+    <script src="config.js"></script>
+    <script type="module">
+      import {
+        initializeApp
+      } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
+      import {
+        getAuth,
+        onAuthStateChanged,
+        signOut,
+      } from 'https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js'
+      const app = initializeApp(window.FIREBASE_CONFIG);
+      const auth = getAuth(app)
+      onAuthStateChanged(auth, (user) => {
+        if (!user) {
+          window.location.href = 'login.html'
+        }
+      })
+      const logoutBtn = document.getElementById('btn-header-logout')
+      logoutBtn.addEventListener('click', () => {
+        signOut(auth).catch((error) => {
+          console.error('Logout error:', error)
+        })
+      })
     </script>
 </body>
-
 </html>

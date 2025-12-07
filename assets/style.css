@@ -900,7 +900,9 @@ section#login {
     border-radius: 4px;
     color: #fff;
 }
-
 .delete-btn:hover {
     cursor: pointer;
+}
+#btn-header-login {
+    width: 158px;
 }

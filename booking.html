@@ -11,61 +11,45 @@
         <nav class="nav">
             <div class="nav-brand">
                 <img src="assets/images/LOGO.jpeg">
-                    <div class="brand-text-main">
-                        <a href="index.html">MED'Z LAUNDRY SHOP</a>
-                    </div>
+                <div class="brand-text-main">
+                    <a href="index.html">MED'Z LAUNDRY SHOP</a>
                 </div>
-                <div class="nav-links">
-                    <a href="home.html">Home</a>
-                    <a href="about.html">About</a>
-                    <a href="service.html">Service</a>
-                    <a href="overview.html">Overview</a>
-                    <a href="inquiry.html">Inquiry</a>
-                    <a href="booking.html"class="active">Booking</a>
-                </div>
-                <div class="nav-cta">
-                    <a href="#" class="btn btn-accent" id="login-btn"></a>
-                </div>
+            </div>
+            <div class="nav-links">
+                <a href="home.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="service.html">Service</a>
+                <a href="overview.html">Overview</a>
+                <a href="inquiry.html">Inquiry</a>
+                <a href="booking.html" class="active">Booking</a>
+            </div>
+            <div class="nav-cta">
+                <a href="#" class="btn btn-accent" id="btn-header-login">owner login</a>
+            </div>
             </div>
         </nav>
     </header>
     <main class="page">
-        
-        
-
-        
         <section id="booking">
             <h2 class="section-title" style="align-content: center;">Booking</h2>
             <div class="section-tagline">PICKUP OR DROP OFF SCHEDULE</div>
-
             <div class="form-grid">
                 <div class="form-card">
                     <div class="form-title">Book your next laundry day</div>
                     <div class="form-subtitle">
-                        Fill out the form so we can prepare a slot and confirm your schedule
-                        via SMS or call.
+                        Fill out the form so we can prepare a slot and confirm your schedule via SMS or call.
                     </div>
-
-                    <form>
+                    <form id="form-booking">
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="book-name">Full Name</label>
-                                <input type="text"
-                                       id="book-name"
-                                       name="name"
-                                       placeholder="Juan Dela Cruz"
-                                       required />
+                                <input type="text" id="book-name" name="name" placeholder="Juan Dela Cruz" required />
                             </div>
                             <div class="form-group">
                                 <label for="book-phone">Mobile Number</label>
-                                <input type="tel"
-                                       id="book-phone"
-                                       name="phone"
-                                       placeholder="09XX-XXX-XXXX"
-                                       required />
+                                <input type="tel" id="book-phone" name="phone" placeholder="09XX-XXX-XXXX" required />
                             </div>
                         </div>
-
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="book-date">Preferred Date</label>
@@ -76,7 +60,6 @@
                                 <input type="time" id="book-time" name="time" required />
                             </div>
                         </div>
-
                         <div class="form-group">
                             <label for="book-type">Service Type</label>
                             <select id="book-type" name="type" required>
@@ -86,36 +69,25 @@
                                 <option>Fold</option>
                             </select>
                         </div>
-
                         <div class="form-group">
                             <label for="book-kilos">Estimated Kilos</label>
-                            <input type="number"
-                                   id="book-kilos"
-                                   name="kilos"
-                                   min="1"
-                                   step="1"
-                                   placeholder="e.g. 6" />
+                            <input type="number" id="book-kilos" name="kilos" min="1" step="1" placeholder="e.g. 6" />
                             <div class="form-hint">
                                 If unsure, you can leave this blank. We will weigh at the shop.
                             </div>
                         </div>
-
                         <div class="form-group">
                             <label for="book-notes">Notes or special instructions</label>
-                            <textarea id="book-notes"
-                                      name="notes"
-                                      placeholder="Example: Separate uniforms, baby clothes, or white items."></textarea>
+                            <textarea id="book-notes" name="notes" placeholder="Example: Separate uniforms, baby clothes, or white items."></textarea>
                         </div>
-
                         <div class="form-footer">
-                            <button type="button" class="btn btn-accent" id="btn-save-booking">Submit Booking</button>
+                            <button type="submit" class="btn btn-accent">Submit Booking</button>
                             <div class="form-note">
                                 We will confirm your slot manually via SMS or call.
                             </div>
                         </div>
                     </form>
                 </div>
-
                 <div class="form-card">
                     <div class="form-title">Pickup & Delivery Reminders</div>
                     <ul class="overview-steps">
@@ -124,8 +96,7 @@
                             <div>
                                 <div class="step-title">Pack your laundry securely</div>
                                 <div class="step-text">
-                                    Use a laundry bag or durable plastic bag. Avoid open baskets
-                                    to keep clothes safe during pickup.
+                                    Use a laundry bag or durable plastic bag. Avoid open baskets to keep clothes safe during pickup.
                                 </div>
                             </div>
                         </li>
@@ -134,8 +105,7 @@
                             <div>
                                 <div class="step-title">Separate special items</div>
                                 <div class="step-text">
-                                    Put delicates, baby clothes, or “do not tumble dry” items in a
-                                    separate bag and mention them in the notes.
+                                    Put delicates, baby clothes, or “do not tumble dry” items in a separate bag and mention them in the notes.
                                 </div>
                             </div>
                         </li>
@@ -144,8 +114,7 @@
                             <div>
                                 <div class="step-title">Make sure someone is home</div>
                                 <div class="step-text">
-                                    For pickups and deliveries, ensure a contact person is available
-                                    during the scheduled time.
+                                    For pickups and deliveries, ensure a contact person is available during the scheduled time.
                                 </div>
                             </div>
                         </li>
@@ -154,63 +123,68 @@
             </div>
         </section>
     </main>
-
     <footer>
-        &copy; <span>Med'z Laundry Shop</span> 
+        &copy; <span>Med'z Laundry Shop</span>
     </footer>
+
+    <script src="config.js"></script>
     <script type="module">
-      // Import the functions you need from the SDKs you need
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
-      import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-analytics.js";
-      import {getDatabase, ref, push, onChildAdded } from 'https://www.gstatic.com/firebasejs/12.6.0/firebase-database.js'
+      import {
+        initializeApp
+      } from 'https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js';
+      import {
+        getAuth,
+        onAuthStateChanged
+      } from 'https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js'
+      import {
+        getDatabase,
+        ref,
+        push
+      } from 'https://www.gstatic.com/firebasejs/12.6.0/firebase-database.js'
 
-      // TODO: Add SDKs for Firebase products that you want to use
-      // https://firebase.google.com/docs/web/setup#available-libraries
-
-      // Your web app's Firebase configuration
-      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-      const firebaseConfig = {
-        apiKey: "AIzaSyATwTLLFfBdF6QKErEaaWHhShCHMhIM38k",
-        authDomain: "laundry-a0267.firebaseapp.com",
-        databaseURL: "https://laundry-a0267-default-rtdb.firebaseio.com",
-        projectId: "laundry-a0267",
-        storageBucket: "laundry-a0267.firebasestorage.app",
-        messagingSenderId: "272057038114",
-        appId: "1:272057038114:web:f0e1350416866fbe92617b",
-        measurementId: "G-VCXYYSESV8"
-      };
-
-      // Initialize Firebase
-      const app = initializeApp(firebaseConfig);
+      const app = initializeApp(window.FIREBASE_CONFIG);
+      const auth = getAuth(app)
       const db = getDatabase(app)
+
+      onAuthStateChanged(auth, (user) => {
+        const el = document.getElementById('btn-header-login')
+
+        if (user) {
+          el.innerHTML = 'Dashboard'
+          el.href = 'admin-inquiry-records.html'
+        } else {
+          el.innerHTML = 'Owner Login'
+          el.href = 'login.html'
+        }
+      })
 
       const bookingRef = ref(db, 'bookings')
 
-      const sendBtn = document.getElementById('btn-save-booking')
+      const form = document.getElementById('form-booking')
+      const name = document.getElementById("book-name")
+      const phone = document.getElementById("book-phone")
+      const date = document.getElementById("book-date")
+      const time = document.getElementById("book-time")
+      const type = document.getElementById("book-type")
+      const kilos = document.getElementById("book-kilos")
+      const notes = document.getElementById("book-notes")
 
-      sendBtn.addEventListener('click', () => {
-        const name = document.getElementById("book-name").value
-        const phone = document.getElementById("book-phone").value
-        const date = document.getElementById("book-date").value
-        const time = document.getElementById("book-time").value
-        const type = document.getElementById("book-type").value
-        const kilos = document.getElementById("book-kilos").value
-        const notes = document.getElementById("book-notes").value
+      form.addEventListener('submit', (e) => {
+        e.preventDefault()
 
         push(bookingRef, {
-            name,
-            phone,
-            date,
-            time,
-            type,
-            kilos,
-            notes,
-            createdAt: Date.now(),
+          name: name.value,
+          phone: phone.value,
+          date: date.value,
+          time: time.value,
+          type: type.value,
+          kilos: kilos.value,
+          notes: notes.value,
+        }).then(() => {
+          alert('Booking Sent!')
+          form.reset()
         })
-        alert('Saved!')
       })
     </script>
-    <script src="assets/app.js"></script>
-    <script> checkLogin() </script>
 </body>
 </html>

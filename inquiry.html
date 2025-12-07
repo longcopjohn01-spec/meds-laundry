@@ -24,7 +24,7 @@
                 <a href="booking.html">Booking</a>
             </div>
             <div class="nav-cta">
-                <a href="#" class="btn btn-accent" id="btn-header-login">owner login</a>
+                <a href="#" class="btn btn-accent hidden" id="btn-header-login">owner login</a>
             </div>
         </nav>
     </header>
@@ -137,6 +137,7 @@
           el.innerHTML = 'Owner Login'
           el.href = 'login.html'
         }
+        el.classList.remove('hidden')
       })
 
       const inquiryRef = ref(db, 'inquiries')

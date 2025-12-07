@@ -906,3 +906,7 @@ section#login {
 #btn-header-login {
     width: 158px;
 }
+
+ .hidden {
+     visibility: hidden;
+ }

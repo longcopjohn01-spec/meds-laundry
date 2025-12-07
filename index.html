@@ -24,7 +24,7 @@
                 <a href="booking.html">Booking</a>
             </div>
             <div class="nav-cta">
-                <a href="#" class="btn btn-accent" id="btn-header-login">owner login</a>
+                <a href="#" class="btn btn-accent hidden" id="btn-header-login">owner login</a>
             </div>
         </nav>
     </header>
@@ -547,7 +547,6 @@
 
       onAuthStateChanged(auth, (user) => {
         const el = document.getElementById('btn-header-login')
-
         if (user) {
           el.innerHTML = 'Dashboard'
           el.href = 'admin-inquiry-records.html'
@@ -555,6 +554,7 @@
           el.innerHTML = 'Owner Login'
           el.href = 'login.html'
         }
+        el.classList.remove('hidden')
       })
     </script>
 </body>

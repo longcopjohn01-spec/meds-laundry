@@ -46,7 +46,7 @@
                         <th>MESSAGE</th>
                         <th>ACTION</th>
                     </thead>
-                    <tbody id="inquiry-records">
+                    <tbody id="inquiries-table-body">
                         
                     </tbody>
                 </table>
@@ -61,7 +61,7 @@
       // Import the functions you need from the SDKs you need
       import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
       import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-analytics.js";
-      import {getDatabase, ref, push, onChildAdded, remove } from 'https://www.gstatic.com/firebasejs/12.6.0/firebase-database.js'
+      import {getDatabase, ref, push, onChildAdded, remove, onChildChanged, onChildRemoved  } from 'https://www.gstatic.com/firebasejs/12.6.0/firebase-database.js'
 
       // TODO: Add SDKs for Firebase products that you want to use
       // https://firebase.google.com/docs/web/setup#available-libraries
@@ -83,49 +83,106 @@
       const app = initializeApp(firebaseConfig);
       const db = getDatabase(app)
 
-      const inquiryRef = ref(db, 'inquiries')
+      const inquiriesRef = ref(db, 'inquiries')
 
-      const table = document.getElementById('inquiry-records')
-      onChildAdded(inquiryRef, (snapshot) => {
-        const data = snapshot.val()
-        const key = snapshot.key 
-        table.insertAdjacentHTML('beforeend', `
-            <tr>
-                <td>${data.name}</td>
-                <td>${data.phone}</td>
-                <td>${data.email}</td>
-                <td>${data.topic}</td>
-                <td>${data.message}</td>
-                <td>
-                  <button class="delete-btn" data-key="${key}">Delete</button>
-                </td>
-            </tr>
-        `)
-      })
+      const tableBody = document.getElementById('inquiries-table-body')
+      function createRow(key, data) {
+          const row = document.createElement('tr')
+          row.dataset.key = key // store the Firebase key on the row
 
-      table.addEventListener('click', (event) => {
+          row.insertAdjacentHTML(
+            'beforeend',
+            `
+              <td>${data.name}</td>
+              <td>${data.phone}</td>
+              <td>${data.email}</td>
+              <td>${data.topic}</td>
+              <td>${data.message}</td>
+              <td>
+                <button class="delete-btn" data-key="${key}">Delete</button>
+              </td>
+            `,
+          )
+
+          return row
+        }
+
+        /**
+         * 1) Realtime: new record added
+         */
+        onChildAdded(inquiriesRef, (snapshot) => {
+          const data = snapshot.val()
+          const key = snapshot.key
+
+          // Avoid duplicate row if it already exists
+          let row = tableBody.querySelector(`tr[data-key="${key}"]`)
+          if (!row) {
+            row = createRow(key, data)
+            tableBody.appendChild(row)
+          }
+        })
+        /**
+         * 2) Realtime: record updated
+         */
+        onChildChanged(inquiriesRef, (snapshot) => {
+          const data = snapshot.val()
+          const key = snapshot.key
+
+          const row = tableBody.querySelector(`tr[data-key="${key}"]`)
+          if (!row) {
+            // if somehow missing, just create it
+            const newRow = createRow(key, data)
+            tableBody.appendChild(newRow)
+            return
+          }
+
+          // Update the existing row’s cells
+          const cells = row.querySelectorAll('td')
+          // Order must match your insertHTML order
+          cells[0].textContent = data.name
+          cells[1].textContent = data.phone
+          cells[2].textContent = data.email
+          cells[3].textContent = data.topic
+          cells[4].textContent = data.message
+          // cells[5] is the Action cell with the button (leave as is)
+        })
+
+        /**
+         * 3) Realtime: record deleted (from any client)
+         */
+        onChildRemoved(inquiriesRef, (snapshot) => {
+          const key = snapshot.key
+          const row = tableBody.querySelector(`tr[data-key="${key}"]`)
+          if (row) {
+            row.remove()
+          }
+        })
+
+      /**
+         * Delete button handler with confirmation alert
+         */
+        tableBody.addEventListener('click', (event) => {
           const btn = event.target.closest('.delete-btn')
           if (!btn) return
 
           const key = btn.dataset.key
           if (!key) return
 
-            const ok = confirm('Are you sure you want to delete this record?')
-          if (!ok) {
-            return // user clicked "Cancel"
-          }
+          const ok = confirm('Are you sure you want to delete this record?')
+          if (!ok) return
 
-          // Build reference: /inquiries/{key}
           const recordRef = ref(db, 'inquiries/' + key)
 
           remove(recordRef)
             .then(() => {
-              // Remove the row from the UI
+              // The row will also be removed by onChildRemoved,
+              // but we can remove it immediately for snappy UI if we want.
               const row = btn.closest('tr')
               if (row) row.remove()
             })
             .catch((err) => {
               console.error('Failed to delete:', err)
+              alert('Failed to delete record. Please try again.')
             })
         })
     </script>

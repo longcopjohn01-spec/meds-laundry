@@ -46,6 +46,7 @@
                         <th>TYPE</th>
                         <th>KILOS</th>
                         <th>NOTES</th>
+                        <th>ACTION</th>
                     </thead>
                     <tbody id="booking-records">
                         
@@ -62,7 +63,7 @@
       // Import the functions you need from the SDKs you need
       import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
       import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-analytics.js";
-      import {getDatabase, ref, push, onChildAdded } from 'https://www.gstatic.com/firebasejs/12.6.0/firebase-database.js'
+      import {getDatabase, ref, push, onChildAdded, onChildChanged, onChildRemoved, remove } from 'https://www.gstatic.com/firebasejs/12.6.0/firebase-database.js'
 
       // TODO: Add SDKs for Firebase products that you want to use
       // https://firebase.google.com/docs/web/setup#available-libraries
@@ -84,23 +85,113 @@
       const app = initializeApp(firebaseConfig);
       const db = getDatabase(app)
 
-      const bookingRef = ref(db, 'bookings')
+      const bookingsRef = ref(db, 'bookings')
 
-      const table = document.getElementById('booking-records')
-      onChildAdded(bookingRef, (snapshot) => {
-        const data = snapshot.val()
-        table.insertAdjacentHTML('beforeend', `
-            <tr>
-                <td>${data.name}</td>
-                <td>${data.phone}</td>
-                <td>${data.date}</td>
-                <td>${data.time}</td>
-                <td>${data.type}</td>
-                <td>${data.kilos}</td>
-                <td>${data.notes}</td>
-            </tr>
-        `)
-      })
+      const tableBody = document.getElementById('booking-records')
+      function createRow(key, data) {
+          const row = document.createElement('tr')
+          row.dataset.key = key // store the Firebase key on the row
+
+          row.insertAdjacentHTML(
+            'beforeend',
+            `
+              <td>${data.name}</td>
+            <td>${data.phone}</td>
+            <td>${data.date}</td>
+            <td>${data.time}</td>
+            <td>${data.type}</td>
+            <td>${data.kilos}</td>
+            <td>${data.notes}</td>
+              <td>
+                <button class="delete-btn" data-key="${key}">Delete</button>
+              </td>
+            `,
+          )
+
+          return row
+        }
+
+        /**
+         * 1) Realtime: new record added
+         */
+        onChildAdded(bookingsRef, (snapshot) => {
+          const data = snapshot.val()
+          const key = snapshot.key
+
+          // Avoid duplicate row if it already exists
+          let row = tableBody.querySelector(`tr[data-key="${key}"]`)
+          if (!row) {
+            row = createRow(key, data)
+            tableBody.appendChild(row)
+          }
+        })
+        /**
+         * 2) Realtime: record updated
+         */
+        onChildChanged(bookingsRef, (snapshot) => {
+          const data = snapshot.val()
+          const key = snapshot.key
+
+          const row = tableBody.querySelector(`tr[data-key="${key}"]`)
+          if (!row) {
+            // if somehow missing, just create it
+            const newRow = createRow(key, data)
+            tableBody.appendChild(newRow)
+            return
+          }
+
+          // Update the existing row’s cells
+          const cells = row.querySelectorAll('td')
+          // Order must match your insertHTML order
+          cells[0].textContent = data.name
+          cells[1].textContent = data.phone
+          cells[2].textContent = data.date
+          cells[3].textContent = data.time
+          cells[4].textContent = data.type
+          cells[5].textContent = data.kilos
+          cells[6].textContent = data.notes
+          // cells[5] is the Action cell with the button (leave as is)
+        })
+
+        /**
+         * 3) Realtime: record deleted (from any client)
+         */
+        onChildRemoved(bookingsRef, (snapshot) => {
+          const key = snapshot.key
+          const row = tableBody.querySelector(`tr[data-key="${key}"]`)
+          if (row) {
+            row.remove()
+          }
+        })
+
+      /**
+         * Delete button handler with confirmation alert
+         */
+        tableBody.addEventListener('click', (event) => {
+          const btn = event.target.closest('.delete-btn')
+          if (!btn) return
+
+          const key = btn.dataset.key
+          if (!key) return
+
+          const ok = confirm('Are you sure you want to delete this record?')
+          if (!ok) return
+
+          const recordRef = ref(db, 'bookings/' + key)
+
+          remove(recordRef)
+            .then(() => {
+              // The row will also be removed by onChildRemoved,
+              // but we can remove it immediately for snappy UI if we want.
+              const row = btn.closest('tr')
+              if (row) row.remove()
+            })
+            .catch((err) => {
+              console.error('Failed to delete:', err)
+              alert('Failed to delete record. Please try again.')
+            })
+        })
+
     </script>
     <script src="assets/app.js"></script>
     <script>

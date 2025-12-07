@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Med'z Laundry Shop</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="assets/style.css">
+</head>
+
+<body>
+    <header>
+        <nav class="nav">
+            <div style="display: flex;gap: 1rem">
+                <div class="nav-brand">
+                    <img src="assets/images/LOGO.jpeg">
+                    <div class="brand-text-main">
+                        <a href="index.html">MED'Z LAUNDRY SHOP</a>
+                    </div>
+                </div>
+
+                <div class="nav-links">
+                    <a href="admin-inquiry-records.html">Inquiries</a>
+                    <a href="admin-booking-records.html">Booking</a>
+                    <a href="admin-sales-records.html" class="active">Sales</a>
+                </div>
+            </div>
+            <div class="nav-cta">
+                <a href="#" class="btn btn-accent" onclick="logout()">Logout</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="page">
+        <section id="about">
+            <h2 class="section-title">List of Sales</h2>
+            <div class="section-tagline">ADMIN • SALES</div>
+
+            <div class="table-wrapper">
+                <table width="100%" border="1">
+                    <thead>
+                        <th>#</th>
+                        <th>NAME</th>
+                        <th>DATE</th>
+                        <th>AMOUNT</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Name</td>
+                            <td>2025-12-07</td>
+                            <td>100</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        &copy; <span>Med'z Laundry Shop</span>
+    </footer>
+    <script src="assets/app.js"></script>
+    <script>
+        checkLogin(true)
+    </script>
+</body>
+
+</html>

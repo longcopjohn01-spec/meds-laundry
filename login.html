@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Med'z Laundry Shop</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="assets/style.css">
+</head>
+<body>
+    <header>
+        <nav class="nav">
+            <div class="nav-brand">
+                <img src="assets/images/LOGO.jpeg">
+                    <div class="brand-text-main">
+                        <a href="index.html">MED'Z LAUNDRY SHOP</a>
+                    </div>
+                </div>
+                <div class="nav-links">
+                    <a href="home.html">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="service.html">Service</a>
+                    <a href="overview.html">Overview</a>
+                    <a href="inquiry.html">Inquiry</a>
+                    <a href="booking.html">Booking</a>
+                </div>
+                <div class="nav-cta">
+                    <a href="login.html" class="btn btn-accent" class="active">Owner Login</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+        
+        <section id="login">
+            <div class="login-wrapper">
+                <div class="login-card">
+                    <div class="login-title"> ADMIN PANEL</div>
+                    <div class="login-subtitle">
+                        This section is for the shop owner or authorized staff to access daily reports,
+                        bookings, and records.
+                    </div>
+
+                    <form>
+                        <div class="form-group">
+                            <label for="login-user">Username</label>
+                            <input type="text"
+                                   id="login-user"
+                                   name="username"
+                                   placeholder="owner@oftheshop.com"
+                                   required />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="login-pass">Password</label>
+                            <input type="password"
+                                   id="login-pass"
+                                   name="password"
+                                   placeholder="Enter your password"
+                                   required />
+                        </div>
+
+                        <div class="form-footer">
+                            <button type="button" class="btn btn-accent" onclick="login()">Log In</button>
+                            <div class="form-note">
+                               
+                            </div>
+                        </div>
+                    </form>
+
+                    <div class="login-meta">
+                        <strong>Forgot Password</strong> 
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    <footer>
+        &copy; <span>Med'z Laundry Shop</span> 
+    </footer>
+    <script src="assets/app.js"></script>
+</body>
+</html>

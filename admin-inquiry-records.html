@@ -84,12 +84,7 @@
         const row = document.createElement('tr')
         row.dataset.key = key // store the Firebase key on the row
         if (!data) {
-          row.insertAdjacentHTML(
-            'beforeend',
-            `
-            <td colspan="6">Loading...</td>
-            `,
-          )
+          row.insertAdjacentHTML('beforeend', ` <td colspan="6">Loading...</td>`)
           return row
         }
         row.insertAdjacentHTML(
@@ -100,9 +95,7 @@
               <td>${data.email}</td>
               <td>${data.topic}</td>
               <td>${data.message}</td>
-              <td>
-                <button class="delete-btn" data-key="${key}">Delete</button>
-              </td>
+              <td> <button class="delete-btn" data-key="${key}">Delete</button> </td>
             `,
         )
         return row

@@ -893,3 +893,14 @@ section#login {
     box-shadow: none;
     border: none;
 }
+.delete-btn {
+    padding: 5px 10px;
+    background: #dc3545;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+}
+
+.delete-btn:hover {
+    cursor: pointer;
+}

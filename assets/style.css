@@ -23,9 +23,13 @@
 
 html {
     scroll-behavior: smooth;
+    height: 100%;
+    margin: 0;
 }
 
 body {
+    height: 100%;
+    margin: 0;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     background-color: var(--bg);
     /*background-image: url("images/laundry-bg.jpg");*/
@@ -37,6 +41,8 @@ body {
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
    
@@ -53,6 +59,7 @@ body {
     max-width: 1200px;
     margin: 1.5rem auto 0rem;
     padding: 0 1.5rem 4rem;
+    flex: 1;
 }
 
 section {
@@ -64,6 +71,7 @@ section {
     margin-top: 1.75rem;
     box-shadow: var(--shadow-soft);
     border: 1px solid var(--border-subtle);
+    width: 1200px;
 }
 
     section:last-of-type {
@@ -758,6 +766,7 @@ footer {
     border-top: 1px solid rgba(10, 35, 70, 0.08);
     text-align: center;
     background: rgba(255, 255, 255, 0.92);
+    flex-shrink: 0;
 }
 
     footer span {

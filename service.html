@@ -11,73 +11,93 @@
         <nav class="nav">
             <div class="nav-brand">
                 <img src="assets/images/LOGO.jpeg">
-                    <div class="brand-text-main">
-                        <a href="index.html">MED'Z LAUNDRY SHOP</a>
-                    </div>
+                <div class="brand-text-main">
+                    <a href="index.html">MED'Z LAUNDRY SHOP</a>
                 </div>
-                <div class="nav-links">
-                    <a href="home.html">Home</a>
-                    <a href="about.html">About</a>
-                    <a href="service.html" class="active">Service</a>
-                    <a href="overview.html">Overview</a>
-                    <a href="inquiry.html">Inquiry</a>
-                    <a href="booking.html">Booking</a>
-                </div>
-                <div class="nav-cta">
-                    <a href="#" class="btn btn-accent" id="login-btn"></a>
-                </div>
+            </div>
+            <div class="nav-links">
+                <a href="home.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="service.html" class="active">Service</a>
+                <a href="overview.html">Overview</a>
+                <a href="inquiry.html">Inquiry</a>
+                <a href="booking.html">Booking</a>
+            </div>
+            <div class="nav-cta">
+                <a href="#" class="btn btn-accent" id="btn-header-login">owner login</a>
+            </div>
             </div>
         </nav>
     </header>
-
     <main class="page">
         <section id="service">
             <h2 class="section-title">Services & Rates</h2>
             <div class="section-tagline">SERVICE MENU</div>
-
             <div class="service-grid">
                 <article class="service-card">
                     <img src="assets/images/washing.jpg">
                     <div class="service-label">Try This</div>
                     <div class="service-title">Washing </div>
                     <div class="service-price">₱60 / Minimum of 9kls per Load</div>
-                    <p class="service-desc" style="text-align: justify;"> 
-                        Perfect for everyday clothes and uniforms. Includes detergent, fabric conditioner,
-                        and neatly folded output packed per household.
+                    <p class="service-desc" style="text-align: justify;">
+                        Perfect for everyday clothes and uniforms. Includes detergent, fabric conditioner, and neatly folded output packed per household.
                     </p>
                     <span class="service-pill">Minimum 9 kg per load</span>
                 </article>
-
                 <article class="service-card">
                     <img src="assets/images/image3.jpg">
                     <div class="service-label">Try This</div>
                     <div class="service-title">Drying</div>
                     <div class="service-price">₱75 / Minimum of 9kls per Load</div>
-                    <p class="service-desc"style="text-align: justify;"> 
-                        Commercial grade dryers with the proper settings are used to dry clothing.
-                        temperature to preserve fabric quality and avoid shrinking.
+                    <p class="service-desc" style="text-align: justify;">
+                        Commercial grade dryers with the proper settings are used to dry clothing. temperature to preserve fabric quality and avoid shrinking.
                     </p>
                     <span class="service-pill">Hypoallergenic options available</span>
                 </article>
-
                 <article class="service-card">
                     <img src="assets/images/foldings.jpg">
                     <div class="service-label">Try This</div>
                     <div class="service-title">Folding</div>
-                    <div class="service-price">₱30 / Minimum of 9kls<div>
-                    <p class="service-desc"style="text-align: justify;"> 
-                  Once drying is complete, your clothes are carefully folded and arranged, ready for pickup or delivery.
-                </p>
-                    <span class="service-pill">Subject to location & schedule</span>
+                    <div class="service-price">₱30 / Minimum of 9kls
+                        <div>
+                            <p class="service-desc" style="text-align: justify;">
+                                Once drying is complete, your clothes are carefully folded and arranged, ready for pickup or delivery.
+                            </p>
+                            <span class="service-pill">Subject to location & schedule</span>
+                        </div>
+                    </div>
                 </article>
             </div>
         </section>
     </main>
-
     <footer>
-        &copy; <span>Med'z Laundry Shop</span> 
+        &copy; <span>Med'z Laundry Shop</span>
     </footer>
-    <script src="assets/app.js"></script>
-    <script> checkLogin() </script>
+
+    <script src="config.js"></script>
+    <script type="module">
+      import {
+        initializeApp
+      } from 'https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js';
+      import {
+        getAuth,
+        onAuthStateChanged
+      } from 'https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js'
+
+      const app = initializeApp(window.FIREBASE_CONFIG);
+      const auth = getAuth(app)
+
+      onAuthStateChanged(auth, (user) => {
+        const el = document.getElementById('btn-header-login')
+
+        if (user) {
+          el.innerHTML = 'Dashboard'
+          el.href = 'admin-inquiry-records.html'
+        } else {
+          el.innerHTML = 'Owner Login'
+          el.href = 'login.html'
+        }
+      })
+    </script>
 </body>
 </html>

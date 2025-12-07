@@ -11,71 +11,94 @@
         <nav class="nav">
             <div class="nav-brand">
                 <img src="assets/images/LOGO.jpeg">
-                    <div class="brand-text-main">
-                        <a href="index.html">MED'Z LAUNDRY SHOP</a>
-                    </div>
+                <div class="brand-text-main">
+                    <a href="index.html">MED'Z LAUNDRY SHOP</a>
                 </div>
-                <div class="nav-links">
-                    <a href="home.html">Home</a>
-                    <a href="about.html">About</a>
-                    <a href="service.html">Service</a>
-                    <a href="overview.html">Overview</a>
-                    <a href="inquiry.html">Inquiry</a>
-                    <a href="booking.html">Booking</a>
-                </div>
-                <div class="nav-cta">
-                    <a href="login.html" class="btn btn-accent" class="active">Owner Login</a>
-                </div>
+            </div>
+            <div class="nav-links">
+                <a href="home.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="service.html">Service</a>
+                <a href="overview.html">Overview</a>
+                <a href="inquiry.html">Inquiry</a>
+                <a href="booking.html">Booking</a>
+            </div>
+            <div class="nav-cta">
+                <a href="login.html" class="btn btn-accent" id="btn-header-login">Owner Login</a>
+            </div>
             </div>
         </nav>
     </header>
-        
-        <section id="login">
-            <div class="login-wrapper">
-                <div class="login-card">
-                    <div class="login-title"> ADMIN PANEL</div>
-                    <div class="login-subtitle">
-                        This section is for the shop owner or authorized staff to access daily reports,
-                        bookings, and records.
+    <section id="login">
+        <div class="login-wrapper">
+            <div class="login-card">
+                <div class="login-title"> ADMIN PANEL</div>
+                <div class="login-subtitle">
+                    This section is for the shop owner or authorized staff to access daily reports, bookings, and records.
+                </div>
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="login-user">Username</label>
+                        <input type="text" id="login-user" name="username" placeholder="owner@oftheshop.com" required />
                     </div>
-
-                    <form>
-                        <div class="form-group">
-                            <label for="login-user">Username</label>
-                            <input type="text"
-                                   id="login-user"
-                                   name="username"
-                                   placeholder="owner@oftheshop.com"
-                                   required />
-                        </div>
-
-                        <div class="form-group">
-                            <label for="login-pass">Password</label>
-                            <input type="password"
-                                   id="login-pass"
-                                   name="password"
-                                   placeholder="Enter your password"
-                                   required />
-                        </div>
-
-                        <div class="form-footer">
-                            <button type="button" class="btn btn-accent" onclick="login()">Log In</button>
-                            <div class="form-note">
-                               
-                            </div>
-                        </div>
-                    </form>
-
-                    <div class="login-meta">
-                        <strong>Forgot Password</strong> 
+                    <div class="form-group">
+                        <label for="login-pass">Password</label>
+                        <input type="password" id="login-pass" name="password" placeholder="Enter your password" required />
                     </div>
+                    <div class="form-footer">
+                        <button type="submit" class="btn btn-accent">Log In</button>
+                        <div class="form-note">
+                        </div>
+                    </div>
+                </form>
+                <div class="login-meta">
+                    <strong>Forgot Password</strong>
                 </div>
             </div>
-        </section>
-
+        </div>
+    </section>
     <footer>
-        &copy; <span>Med'z Laundry Shop</span> 
+        &copy; <span>Med'z Laundry Shop</span>
     </footer>
-    <script src="assets/app.js"></script>
+
+    <script src="config.js"></script>
+    <script type="module">
+      import {
+        initializeApp
+      } from 'https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js'
+      import {
+        getAuth,
+        signInWithEmailAndPassword,
+        onAuthStateChanged
+      } from 'https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js'
+      const app = initializeApp(window.FIREBASE_CONFIG)
+      const auth = getAuth(app)
+
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          window.location.href = 'admin-inquiry-records.html'
+        }
+      })
+
+      const loginForm = document.getElementById('login-form')
+      const loginEmail = document.getElementById('login-user')
+      const loginPassword = document.getElementById('login-pass')
+
+      loginForm.addEventListener('submit', (e) => {
+        e.preventDefault()
+        const email = loginEmail.value.trim()
+        const password = loginPassword.value.trim()
+        if (!email || !password) return
+
+        signInWithEmailAndPassword(auth, email, password)
+          .then(() => {
+            window.location.href = 'admin-inquiry-records.html'
+          })
+          .catch((error) => {
+            console.log(error)
+            alert('user not found')
+          })
+      })
+    </script>
 </body>
 </html>

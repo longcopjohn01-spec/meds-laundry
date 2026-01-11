@@ -777,68 +777,6 @@ footer {
     }
 }
 
-@media (max-width: 960px) {
-    .hero,
-    .two-column,
-    .overview-grid,
-    .form-grid {
-        grid-template-columns: minmax(0, 1fr);
-    }
-
-    #home {
-        padding-top: 2.5rem;
-    }
-
-    .hero-right {
-        order: -1;
-    }
-
-    .nav {
-        flex-wrap: wrap;
-        height: auto;
-    }
-
-    .nav-links {
-        flex-wrap: wrap;
-        justify-content: flex-end;
-    }
-}
-
-@media (max-width: 720px) {
-    .page {
-        padding-inline: 1.1rem;
-    }
-
-    section {
-        padding-top: 2.7rem;
-        padding-bottom: 2.5rem;
-    }
-
-    .service-grid {
-        grid-template-columns: minmax(0, 1fr);
-    }
-
-    .about-grid {
-        grid-template-columns: minmax(0, 1fr);
-    }
-
-    .photo-gallery {
-        grid-template-columns: minmax(0, 1fr);
-    }
-
-    .nav {
-        justify-content: space-between;
-    }
-
-    .nav-links {
-        display: none; 
-    }
-
-    .nav-cta {
-        margin-left: auto;
-    }
-}
-
 .service-card img {
     width: 100%; 
     height: auto;
@@ -910,3 +848,75 @@ section#login {
  .hidden {
      visibility: hidden;
  }
+
+.nav-container {
+    display: flex;gap: 1rem
+}
+
+
+
+@media (max-width: 960px) {
+    .hero,
+    .two-column,
+    .overview-grid,
+    .form-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    #home {
+        padding-top: 2.5rem;
+    }
+
+    .hero-right {
+        order: -1;
+    }
+
+    .nav {
+        flex-wrap: wrap;
+        height: auto;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: flex-end;
+    }
+}
+
+@media (max-width: 720px) {
+    .page {
+        padding-inline: 1.1rem;
+    }
+
+    section {
+        padding-top: 2.7rem;
+        padding-bottom: 2.5rem;
+    }
+
+    .service-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .about-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .photo-gallery {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .nav {
+        justify-content: space-between;
+    }
+
+    .nav-links {
+        /*display: none; */
+        justify-content: center;
+    }
+
+    .nav-cta {
+        margin: 0 auto;
+    }
+    .nav-container {
+        display: block;
+    }
+}

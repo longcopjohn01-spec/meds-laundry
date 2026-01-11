@@ -1,4 +1,4 @@
-// config.js  (DO NOT commit this file)
+
 window.FIREBASE_CONFIG = {
   apiKey: "AIzaSyATwTLLFfBdF6QKErEaaWHhShCHMhIM38k",
   authDomain: "laundry-a0267.firebaseapp.com",

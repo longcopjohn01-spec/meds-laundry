@@ -13,7 +13,7 @@
         <nav class="nav">
             <div style="display: flex;gap: 1rem">
                 <div class="nav-brand">
-                    <img src="assets/images/LOGO.jpeg">
+                    <img src="assets/images/logo.png">
                     <div class="brand-text-main">
                         <a href="index.html">MED'Z LAUNDRY SHOP</a>
                     </div>
@@ -31,7 +31,7 @@
     </header>
     <main class="page">
         <section id="about">
-            <h2 class="section-title">List of Booking</h2>
+            <h2 class="section-title" style="text-align: center;">List of Booking</h2>
             <div class="section-tagline">ADMIN • BOOK</div>
             <div class="table-wrapper">
                 <table width="100%" border="1">
@@ -86,7 +86,7 @@
       tableBody.appendChild(createRow('0', null))
       function createRow(key, data) {
         const row = document.createElement('tr')
-        row.dataset.key = key // store the Firebase key on the row
+        row.dataset.key = key 
         if (!data) {
           row.insertAdjacentHTML('beforeend', ` <td colspan="8">Loading...</td>`)
           return row

@@ -1,22 +1,24 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <title>Med'z Laundry Shop</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="assets/style.css">
 </head>
+
 <body>
     <header>
         <nav class="nav">
             <div class="nav-brand">
-                <img src="assets/images/LOGO.jpeg">
+                <img src="assets/images/logo.png">
                 <div class="brand-text-main">
                     <a href="index.html">MED'Z LAUNDRY SHOP</a>
                 </div>
             </div>
             <div class="nav-links">
-                <a href="home.html">Home</a>
+                <a href="home.html" class="active">Home</a>
                 <a href="about.html">About</a>
                 <a href="service.html">Service</a>
                 <a href="overview.html">Overview</a>
@@ -28,52 +30,42 @@
             </div>
         </nav>
     </header>
-
     <main class="page">
         <section id="home">
             <div class="hero">
                 <div class="hero-left">
                     <div class="hero-kicker">
-                        <span class="hero-kicker-dot"></span>
-                        Fresh Clothes, Fresh Lifes.
+                        <span class="hero-kicker-dot"></span> Fresh Clothes, Fresh Lifes.
                     </div>
                     <h1 class="hero-title">
                         One Call
                         <span>Clean It All.</span>
                     </h1>
                     <p class="hero-subtitle">
-                        Drop off in minutes, get clothes back fresh, folded, and ready to wear.
-                        We handle the washing, so you can handle life.
+                        Drop off in minutes, get clothes back fresh, folded, and ready to wear. We handle the washing, so you can handle life.
                     </p>
-
                     <div class="hero-points">
                         <div class="chip">
-                            <span class="chip-dot"></span>
-                            Free detergent & fabric conditioner
+                            <span class="chip-dot"></span> Free detergent & fabric conditioner
                         </div>
                         <div class="chip">
-                            <span class="chip-dot"></span>
-                            SMS update when clothes are ready
+                            <span class="chip-dot"></span> SMS update when clothes are ready
                         </div>
                         <div class="chip">
-                            <span class="chip-dot"></span>
-                            Gentle care for baby & delicate wear
+                            <span class="chip-dot"></span> Gentle care for baby & delicate wear
                         </div>
                         <div class="chip">
-                            <span class="chip-dot"></span>
-                            From dirty to dazzling
+                            <span class="chip-dot"></span> From dirty to dazzling
                         </div>
                     </div>
-
                     <div class="hero-actions">
-                        <a href="#booking" class="btn btn-accent">Book a Pickup</a>
-                        <a href="#service" class="btn btn-outline">View Services</a>
+                        <a href="booking.html" class="btn btn-accent">Book a Pickup</a>
+                        <a href="service.html" class="btn btn-outline">View Services</a>
                         <div class="hero-note">
                             Open daily · 8:00 AM – 10:00 PM
                         </div>
                     </div>
                 </div>
-
                 <div class="hero-right">
                     <div class="hero-photo">
                         <img src="assets/images/image1.jpg" alt="Modern clean laundry shop interior" />
@@ -81,38 +73,36 @@
                 </div>
             </div>
         </section>
-
-
     </main>
-
     <footer>
-        &copy; <span>Med'z Laundry Shop</span> 
+        &copy; <span>Med'z Laundry Shop</span>
     </footer>
 
     <script src="config.js"></script>
     <script type="module">
-      import {
-        initializeApp
-      } from 'https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js';
-      import {
-        getAuth,
-        onAuthStateChanged
-      } from 'https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js'
+        import {
+            initializeApp
+        } from 'https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js';
+        import {
+            getAuth,
+            onAuthStateChanged
+        } from 'https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js'
 
-      const app = initializeApp(window.FIREBASE_CONFIG);
-      const auth = getAuth(app)
+        const app = initializeApp(window.FIREBASE_CONFIG);
+        const auth = getAuth(app)
 
-      onAuthStateChanged(auth, (user) => {
-        const el = document.getElementById('btn-header-login')
-        if (user) {
-          el.innerHTML = 'Dashboard'
-          el.href = 'admin-inquiry-records.html'
-        } else {
-          el.innerHTML = 'Owner Login'
-          el.href = 'login.html'
-        }
-        el.classList.remove('hidden')
-      })
+        onAuthStateChanged(auth, (user) => {
+            const el = document.getElementById('btn-header-login')
+            if (user) {
+                el.innerHTML = 'Dashboard'
+                el.href = 'admin-inquiry-records.html'
+            } else {
+                el.innerHTML = 'Owner Login'
+                el.href = 'login.html'
+            }
+            el.classList.remove('hidden')
+        })
     </script>
 </body>
+
 </html>

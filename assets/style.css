@@ -23,16 +23,12 @@
 
 html {
     scroll-behavior: smooth;
-    height: 100%;
-    margin: 0;
 }
 
 body {
-    height: 100%;
-    margin: 0;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     background-color: var(--bg);
-    /*background-image: url("images/laundry-bg.jpg");*/
+    
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -41,8 +37,6 @@ body {
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     position: relative;
-    display: flex;
-    flex-direction: column;
 }
 
    
@@ -59,19 +53,17 @@ body {
     max-width: 1200px;
     margin: 1.5rem auto 0rem;
     padding: 0 1.5rem 4rem;
-    flex: 1;
 }
 
 section {
     scroll-margin-top: calc(var(--nav-height) + 32px);
     padding: 3.5rem 1.25rem 3.25rem;
     border-bottom: none;
-    background: var(--card-bg);
+    background: rgb(255 255 255 / 96%);
     border-radius: 24px;
     margin-top: 1.75rem;
     box-shadow: var(--shadow-soft);
     border: 1px solid var(--border-subtle);
-    width: 1200px;
 }
 
     section:last-of-type {
@@ -618,7 +610,7 @@ header {
 }
 
 .form-card {
-    background: #ffffff;
+    background: #c1d2ff;
     border-radius: var(--radius-xl);
     padding: 1.5rem 1.6rem;
     border: 1px solid var(--border-subtle);
@@ -766,7 +758,6 @@ footer {
     border-top: 1px solid rgba(10, 35, 70, 0.08);
     text-align: center;
     background: rgba(255, 255, 255, 0.92);
-    flex-shrink: 0;
 }
 
     footer span {
@@ -854,7 +845,7 @@ footer {
     border-radius: 5px;
 }
 .nav-brand img {
-    width: 50px;
+    width: 76px;
     height: auto;
 }
 
@@ -864,7 +855,7 @@ footer {
 
 table {
   width: 100%;
-  border-collapse: collapse; /* remove double borders */
+  border-collapse: collapse; 
   font-family: Arial, sans-serif;
   font-size: 14px;
 }
@@ -881,17 +872,17 @@ td {
   border-bottom: 1px solid #dddddd;
 }
 
-/* zebra stripe rows */
+
 tbody tr:nth-child(even) {
   background-color: #f5f5f5;
 }
 
-/* hover effect */
+
 tbody tr:hover {
   background-color: #e0f3ff;
 }
 
-/* optional: make table container scroll on small screens */
+
 .table-wrapper {
   max-width: 100%;
   overflow-x: auto;

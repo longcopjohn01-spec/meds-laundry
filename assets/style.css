@@ -240,7 +240,7 @@ header {
     display: grid;
     grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
     gap: 3rem;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .hero-left {
@@ -296,6 +296,7 @@ header {
     flex-wrap: wrap;
     gap: 0.7rem;
     margin-bottom: 1.7rem;
+    flex-direction: column;
 }
 
 .chip {
@@ -308,6 +309,7 @@ header {
     align-items: center;
     gap: 0.35rem;
     background: rgba(255, 255, 255, 0.98);
+    width: max-content;
 }
 
 .chip-dot {
@@ -348,6 +350,7 @@ header {
         display: block;
         transform: scale(1.03);
         transition: transform 0.55s ease, filter 0.55s ease;
+        max-height: 420px;
     }
 
     .hero-photo:hover img {
